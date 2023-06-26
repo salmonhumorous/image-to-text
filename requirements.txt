@@ -1,0 +1,5 @@
+pytesseract
+flask
+pillow
+numpy
+opencv-python
