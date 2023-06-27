@@ -11,7 +11,7 @@ with open(os.path.join(path, 'index.html'), 'w') as fp:
 </head>
 <body>
     <form action = "/success" method = "post" enctype="multipart/form-data">
-        <input type="file" name="file" />
+        <input type="file" name="file" required/>
         <input type = "submit" value="Upload">
     </form>
 </body>
