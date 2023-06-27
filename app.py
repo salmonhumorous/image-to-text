@@ -1,9 +1,9 @@
 import os
-try:os.mkdir("templates")
-except:pass
+
 
 path = os.getcwd()+'/templates'
-
+try:os.mkdir(path)
+except:pass
 with open(os.path.join(path, 'index.html'), 'w') as fp:
   fp.write('''<html>
 <head>
