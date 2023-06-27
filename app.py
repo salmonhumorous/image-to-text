@@ -68,18 +68,17 @@ def get_string(img_path):
 
 """# **Check if tesseract is successfully installed**"""
 
-!tesseract --version
+
 
 """# **Link to view the hosted flask server**
 Click this link after running all cells to view the index.html
 """
 
-from google.colab.output import eval_js
-print(eval_js("google.colab.kernel.proxyPort(5000)"))
+
 
 """# **Flask server to convert to upload image and extract information**"""
 
-from fileinput import filename
+
 from flask import *
 app = Flask(__name__)
 

@@ -1,9 +1,9 @@
 # **First install the necessary packages so as to run tesseract**
 """
-sudo add-apt-repository ppa:alex-p/tesseract-ocr -y
 sudo apt-get update
-sudo apt install tesseract-ocr
-sudo apt install libtesseract-dev
+sudo add-apt-repository -y ppa:alex-p/tesseract-ocr5
+sudo apt install -y tesseract-ocr
+sudo apt install -y libtesseract-dev
 
 """# **Install the necessary python packages**"""
 sudo pip install pytesseract
