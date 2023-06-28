@@ -95,6 +95,7 @@ def success():
         f = request.files['file']
         f.save(f.filename)
         text = get_string(f.filename)
+        os.remove(f.filename)
         return render_template("acknowledgement.html", text = text)
 
 if __name__ == '__main__':
