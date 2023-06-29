@@ -12,5 +12,8 @@ jobs:
     steps:
       
     - name: connect and pull
-      run:  cd /home/shubham/image-to-text && sh entrypoint.sh
+      run:  cd /home/shubham/image-to-text && git checkout . && git pull origin master
+
+    - name: restart server and other tasks
+      run: cd /home/shubham/image-to-text && sh entrypoint.sh
    
