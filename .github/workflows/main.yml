@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
   
 jobs:
@@ -10,8 +10,7 @@ jobs:
     runs-on: self-hosted
     
     steps:
-  
       
     - name: connect and pull
-      run:  cd /home/shubham/image-to-text && echo "testfile" >> textfile.txt
+      run:  cd /home/shubham/image-to-text && sh entrypoint.sh
    
