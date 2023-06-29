@@ -13,5 +13,5 @@ jobs:
   
       
     - name: connect and pull
-      run: cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull 
+      run:  cd /home/shubham/image-to-text && echo "testfile" >> textfile.txt
    
