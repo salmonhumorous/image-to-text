@@ -7,7 +7,7 @@ except:pass
 with open(os.path.join(path, 'index.html'), 'w') as fp:
   fp.write('''<html>
 <head>
-    <title>Get text from your image/title>
+    <title>Get text from your image</title>
 </head>
 <body>
     <form action = "/success" method = "post" enctype="multipart/form-data">
