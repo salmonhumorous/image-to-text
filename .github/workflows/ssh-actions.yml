@@ -16,6 +16,9 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
         
+    - name: Adding Known Hosts
+      run: ssh-keyscan -H ${{ secrets.SSH_HOST }}{% endraw%} >> ~/.ssh/known_hosts
+        
     - name: git pull
       run: ssh shubham@10.8.0.33 cd /home/shubham/image-to-text && git checkout master && git pull && exit
         
