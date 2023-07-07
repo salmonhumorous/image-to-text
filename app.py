@@ -104,7 +104,7 @@ def main():
     return render_template("index.html")
 
 @app.route('/success-image', methods = ['POST'])
-def success():
+def successimage():
     if request.method == 'POST':
         f = request.files['file']
         f.save(f.filename)
@@ -113,7 +113,7 @@ def success():
         return render_template("acknowledgement.html", text = text)
     
 @app.route('/success-pdf', methods = ['POST'])
-def success():
+def successpdf():
     if request.method == 'POST':
         f = request.files['file']
         f.save(f.filename)
