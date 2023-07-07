@@ -54,6 +54,7 @@ To set up the Image to Text Conversion project, follow these steps:
     sudo apt-get install -y tesseract-ocr
     sudo apt-get install -y libtesseract-dev
     sudo apt-get install ffmpeg libsm6 libxext6 -y
+    sudo apt-get install poppler-utils
     ```
 
 1.  Create a new directory for the project and navigate into it:
@@ -76,6 +77,7 @@ To set up the Image to Text Conversion project, follow these steps:
 
 
     `pip install pytesseract
+    pip install pdf2image
     pip install flask`
 
 

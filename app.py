@@ -7,10 +7,16 @@ except:pass
 with open(os.path.join(path, 'index.html'), 'w') as fp:
   fp.write('''<html>
 <head>
-    <title>Get text from your image </title>
+    <title>Extract data</title>
 </head>
 <body>
-    <form action = "/success" method = "post" enctype="multipart/form-data">
+    <p>Convert Image to text</p>
+    <form action = "/success-image" method = "post" enctype="multipart/form-data">
+        <input type="file" name="file" required/>
+        <input type = "submit" value="Upload">
+    </form>
+    <p>Convert Pdf to text</p>
+    <form action = "/success-pdf" method = "post" enctype="multipart/form-data">
         <input type="file" name="file" required/>
         <input type = "submit" value="Upload">
     </form>
@@ -34,13 +40,14 @@ import cv2
 import numpy as np
 import pytesseract
 from PIL import Image
+from pdf2image import convert_from_path
 
 #tesseract path on the machine (imp)
 pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
 
 # Path of working folder on Disk
 
-def get_string(img_path):
+def extract_text_from_image(img_path):
     # Read image with opencv
     img = cv2.imread(img_path)
 
@@ -69,13 +76,20 @@ def get_string(img_path):
 
     return result
 
-"""# **Check if tesseract is successfully installed**"""
-
-
-
-"""# **Link to view the hosted flask server**
-Click this link after running all cells to view the index.html
-"""
+def extract_text_from_pdf(pdf_path):
+   # Convert PDF to image
+    pages = convert_from_path(pdf_path, 500)
+     
+    # Extract text from each page using Tesseract OCR
+    text_data = ''
+    seperator = '----------------------------------------------------------------------------------------------------'
+    for page in pages:
+        text = pytesseract.image_to_string(page)
+        text_data += text + '\n' + seperator + '\n'
+     
+    # Return the text data
+    return text_data
+    
 
 
 
@@ -89,12 +103,21 @@ app = Flask(__name__)
 def main():
     return render_template("index.html")
 
-@app.route('/success', methods = ['POST'])
+@app.route('/success-image', methods = ['POST'])
 def success():
     if request.method == 'POST':
         f = request.files['file']
         f.save(f.filename)
-        text = get_string(f.filename)
+        text = extract_text_from_image(f.filename)
+        os.remove(f.filename)
+        return render_template("acknowledgement.html", text = text)
+    
+@app.route('/success-pdf', methods = ['POST'])
+def success():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(f.filename)
+        text = extract_text_from_pdf(f.filename)
         os.remove(f.filename)
         return render_template("acknowledgement.html", text = text)
 
